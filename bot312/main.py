@@ -3,13 +3,13 @@ import random
 import sqlite3
 import asyncio
 from datetime import datetime, timedelta
-import jungbo  # jungbo.py 파일 임포트
+import jungbo  # jungbo.py 파일 임포트하는 코드
 import bet
 
 # 봇 토큰 설정
-TOKEN = 'MTM0MzU3NzQ4OTEwNDA0NDA5NQ.GBGid_.ee2Q-2V5GermEFrmjziwOaS8Hk36w2ZhiYoLF4'
+TOKEN = '니 토큰 입력하셀'
 
-# 클라이언트 객체 생성
+# 객체 만들기이이ㅣ
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
@@ -52,7 +52,7 @@ user_last_work_times = {}
 @client.event
 async def on_ready():
     print(f'{client.user}에 로그인했습니다!')
-    client.loop.create_task(jungbo.update_stock_prices()) # jungbo.py의 stock_update 함수를 비동기적으로 실행
+    client.loop.create_task(jungbo.update_stock_prices()) # jungbo.py의 stock_update 함수를 비동기적으로 실행 async
 
 def is_admin(user):
     """사용자가 관리자 권한을 가지고 있는지 확인합니다."""
@@ -125,7 +125,7 @@ async def on_message(message):
         result = cursor.fetchone()
         balance = result[0] if result else 0
 
-        # 사용자 주식 보유 정보 조회
+        # 사용자 주식 보유 정보 조회ㅇㅇ
         cursor.execute('''
                 SELECT stock_code, quantity, average_price FROM user_stocks WHERE user_id = ?
             ''', (user_id,))
@@ -238,7 +238,7 @@ async def on_message(message):
         cursor.execute('''
                 SELECT quantity, average_price FROM user_stocks WHERE user_id = ? AND stock_code = ?
             ''', (user_id, stock_name))
-        result = cursor.fetchone()
+        result = cursor.fetchone() #fetch쓸때 조심해라 파람 불가함함
 
         if not result:
             await message.channel.send("보유한 주식이 없습니다.")
